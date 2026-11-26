@@ -71,7 +71,7 @@ void lcd_delay_execute(lcd_delay_t type) {
         case LCD_DELAY_FUNCTION_SET: __delay_us(100); break;
         case LCD_DELAY_ENABLE_PULSE: __delay_us(1);   break;
         case LCD_DELAY_STANDARD:     __delay_us(40);  break;
-        case LCD_DELAY_LONG_COMMAND: __delay_ms(16);  break;
+        case LCD_DELAY_LONG_COMMAND: __delay_us(1520);  break;
         default:                     __delay_us(100); break;
     }
 }
