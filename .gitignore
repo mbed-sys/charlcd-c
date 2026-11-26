@@ -1,0 +1,44 @@
+# =================================================================
+# Global MPLAB X & XC8 Gitignore (Root Level)
+# This file applies to all sub-directories/projects.
+# =================================================================
+
+# --- Build and Distribution Directories ---
+# By NOT using a leading slash, these match any directory named 
+# 'build' or 'dist' anywhere in the tree.
+build/
+dist/
+
+# --- MPLAB X Private/Local Settings ---
+# This will match 'Project1/nbproject/private/', 'Project2/nbproject/private/', etc.
+nbproject/private/
+
+# --- XC8 Compiler Artifacts ---
+# These patterns match any file ending in these extensions anywhere in the tree.
+*.obj
+*.o
+*.d
+*.lst
+*.map
+*.hex
+*.elf
+*.cof
+*.debug
+
+# --- MCC (MPLAB Code Configurator) ---
+# We commit the generated code so projects are "ready to build" immediately.
+# If you decide to ignore it instead, uncomment the lines below:
+# mcc_generated_code/
+# mcc_generated_files/
+
+# --- Operating System Junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDE/Editor specific ---
+# Ignores these folders if they appear in any sub-project
+.vscode/
+.idea/
+*.swp
+*.swo
