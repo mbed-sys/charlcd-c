@@ -45,7 +45,7 @@ void lcd_delay_execute(lcd_delay_t type) {
             __delay_us(40);
             break;
         case LCD_DELAY_LONG_COMMAND:
-            __delay_ms(16);
+            __delay_us(1520);
             break;
         default:
             __delay_us(100);
