@@ -247,10 +247,6 @@ static void pwm1_neg_charge_pump_LCD_Vo(void) {
     PWM1S1P1H = 0x00; // Duty Cycle High
     PWM1S1P1L = 0x0C; // Duty Cycle Low (Value: 12)
 
-    // Duty Cycle 2 (Output 2)
-    PWM1S1P2H = 0x00; // Duty Cycle High
-    PWM1S1P2L = 0xA0; // Duty Cycle Low (Value: 160)
-
     // --- 5. Interrupt Management ---
     // Disable all PWM1 interrupts
     PIE4bits.PWM1IE = 0; // PWM1 Global Interrupt Enable
