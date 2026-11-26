@@ -50,7 +50,7 @@ void lcd_delay_execute(lcd_delay_t type) {
             __delay_us(40);
             break;
         case LCD_DELAY_LONG_COMMAND:
-            __delay_ms(16);
+            __delay_us(1520);
             break;
         default:
             __delay_us(100);
@@ -197,28 +197,29 @@ int main(void) {
 #endif
 
     /* 2. LCD Initialization and Content Display */
-    // Note: The content displays correctly on a two-line display.
     lcd_init();
     lcd_cntrl(LCD_CURSOR_STEADY);
 
     lcd_goto_pos(LCD_LINE1);
-    lcd_puts("White roses have");
-
-    lcd_goto_pos(LCD_LINE2);
-    lcd_puts("Keine Sch\xEFnheit "); // \xEF == ö
+    lcd_puts("White roses have ");
 
     lcd_goto_pos(LCD_LINE3);
-    lcd_puts(" thorns.");
+    lcd_puts("Keine Sch\xEFnheit "); // \xEF == ö
+
+    lcd_goto_pos(LCD_LINE2);
+    lcd_puts("thorns.");
 
     lcd_goto_pos(LCD_LINE4);
     lcd_puts("ist ohne Dornen.");
+
+    lcd_home();
 
     /* 3. Main Application Loop (Animation) */
     while (1) {
         __delay_ms(300);
 
         // Perform display shifting animation
-        lcd_cntrl(LCD_DISPLAY_SHIFT_LEFT);
+        //lcd_cntrl(LCD_DISPLAY_SHIFT_LEFT);
         lcd_cntrl(LCD_CURSOR_SHIFT_RIGHT);
     }
 }
