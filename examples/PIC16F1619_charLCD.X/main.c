@@ -67,7 +67,7 @@ void lcd_delay_execute(lcd_delay_t type) {
  * @param set_pin_state LCD_PIN_STATE_HIGH or LCD_PIN_STATE_LOW
  */
 void lcd_rs_set(lcd_pin_state_t set_pin_state) {
-    LATCbits.LATC1 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATAbits.LATA4 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /**
@@ -75,7 +75,7 @@ void lcd_rs_set(lcd_pin_state_t set_pin_state) {
  * @param set_pin_state LCD_PIN_STATE_HIGH or LCD_PIN_STATE_LOW
  */
 void lcd_en_set(lcd_pin_state_t set_pin_state) {
-    LATBbits.LATB4 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATCbits.LATC4 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /* ==========================================================================
@@ -84,22 +84,22 @@ void lcd_en_set(lcd_pin_state_t set_pin_state) {
 
 /** @brief Sets Data Bit 4. */
 void lcd_D4_set(lcd_pin_state_t set_pin_state) {
-    LATBbits.LATB5 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATCbits.LATC3 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /** @brief Sets Data Bit 5. */
 void lcd_D5_set(lcd_pin_state_t set_pin_state) {
-    LATBbits.LATB6 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATCbits.LATC6 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /** @brief Sets Data Bit 6. */
 void lcd_D6_set(lcd_pin_state_t set_pin_state) {
-    LATBbits.LATB7 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATCbits.LATC7 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /** @brief Sets Data Bit 7. */
 void lcd_D7_set(lcd_pin_state_t set_pin_state) {
-    LATCbits.LATC7 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATBbits.LATB7 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /* ==========================================================================
@@ -108,12 +108,12 @@ void lcd_D7_set(lcd_pin_state_t set_pin_state) {
 
 /** @brief Configures RS pin as output. */
 static inline void rs_driver_output(void) {
-    TRISCbits.TRISC1 = 0;
+    TRISAbits.TRISA4 = 0;
 }
 
 /** @brief Configures EN pin as output. */
 static inline void en_driver_output(void) {
-    TRISBbits.TRISB4 = 0;
+    TRISCbits.TRISC4 = 0;
 }
 
 /* ==========================================================================
@@ -124,7 +124,7 @@ static inline void en_driver_output(void) {
 
 /** @brief Configures R/W pin as output. */
 static inline void rw_driver_output(void) {
-    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC5 = 0;
 }
 
 /**
@@ -132,7 +132,7 @@ static inline void rw_driver_output(void) {
  * @param set_pin_state LCD_PIN_STATE_HIGH or LCD_PIN_STATE_LOW
  */
 void lcd_rw_set(lcd_pin_state_t set_pin_state) {
-    LATCbits.LATC2 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
+    LATCbits.LATC5 = (set_pin_state == LCD_PIN_STATE_HIGH) ? 1 : 0;
 }
 
 /**
@@ -140,7 +140,7 @@ void lcd_rw_set(lcd_pin_state_t set_pin_state) {
  * @return true if D7 is High, false if Low.
  */
 bool lcd_D7_read_busy_flag(void) {
-    return (PORTCbits.RC7 != 0);
+    return (PORTBbits.RB7 != 0);
 }
 
 /**
@@ -149,15 +149,15 @@ bool lcd_D7_read_busy_flag(void) {
  */
 void lcd_set_data_bus_direction(lcd_bus_dir_t bus_dir) {
     if (bus_dir == LCD_BUS_OUTPUT) {
-        TRISBbits.TRISB5 = 0;
-        TRISBbits.TRISB6 = 0;
-        TRISBbits.TRISB7 = 0;
+        TRISCbits.TRISC3 = 0;
+        TRISCbits.TRISC6 = 0;
         TRISCbits.TRISC7 = 0;
+        TRISBbits.TRISB7 = 0;
     } else { // input:
-        TRISBbits.TRISB5 = 1;
-        TRISBbits.TRISB6 = 1;
-        TRISBbits.TRISB7 = 1;
+        TRISCbits.TRISC3 = 1;
+        TRISCbits.TRISC6 = 1;
         TRISCbits.TRISC7 = 1;
+        TRISBbits.TRISB7 = 1;
     }
 }
 
@@ -176,9 +176,9 @@ void lcd_set_data_bus_direction(lcd_bus_dir_t bus_dir) {
 int main(void) {
     // Configure the clock
     OSC_INIT();
-    
+
     // Pin Configuration: Analog/Digital Selection (ANSEL Registers)
-    ANSELCbits.ANSC7 = 0; /* Disable analog input buffer */
+    ANSELBbits.ANSB7 = 0; /* Disable analog input buffer */
 
     /* 1. Peripheral Pin Direction Initialization */
     rs_driver_output();
@@ -188,12 +188,12 @@ int main(void) {
     lcd_set_data_bus_direction(LCD_BUS_OUTPUT);
 #else
     // Configure D4-D7 as outputs; bidirectional mode is not required
-    TRISBbits.TRISB5 = 0;
-    TRISBbits.TRISB6 = 0;
-    TRISBbits.TRISB7 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC6 = 0;
     TRISCbits.TRISC7 = 0;
-    TRISCbits.TRISC2 = 0; // Configure RW pin; may be hardwired to GND on custom hardware
-    LATCbits.LATC2 = 0; // Drive RW low to prevent a floating state
+    TRISBbits.TRISB7 = 0;
+    TRISCbits.TRISC5 = 0; // Configure RW pin; may be hardwired to GND on custom hardware
+    LATCbits.LATC5 = 0; // Drive RW low to prevent a floating state
 #endif
 
     /* 2. LCD Initialization and Content Display */

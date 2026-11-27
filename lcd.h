@@ -43,7 +43,7 @@
  * If defined, the R/W pin must be configured as an output and data pins 
  * must be switchable between output and input modes. Uncomment to enable.
  */
-#define LCD_USE_BUSY_FLAG
+//#define LCD_USE_BUSY_FLAG
 
 
 #ifdef __cplusplus
