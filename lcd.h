@@ -16,7 +16,7 @@
  * @note The driver will not compile unless all functions marked with 'extern' 
  * are provided by the user implementation.
  * 
- * @see https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
+ * @see https://github.com/mbed-sys/charlcd-c
  * 
  * @author P Hof
  * @date 2026-11-24
