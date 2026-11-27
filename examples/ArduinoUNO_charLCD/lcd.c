@@ -10,7 +10,7 @@
  * 
  * @note Device-specific pin configurations are managed via callbacks and must 
  * be implemented in the user code.
- * @see https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
+ * @see https://github.com/mbed-sys/charlcd-c
  */
 
 #include <stdint.h>
