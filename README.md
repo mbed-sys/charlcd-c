@@ -150,4 +150,4 @@ controller includes a built-in negative charge pump, an external negative voltag
 | **Enable Cycle Time** | $t_{CY}$ | 1 µs | Total time for one full Enable pulse cycle |
 
 
-![charLCD image on a breadboard](img/PIC16F1619charLCD_small.jpg)
+![charLCD image on a breadboard](img/PIC16F1619charLCD_small.JPG)
