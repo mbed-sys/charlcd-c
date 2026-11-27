@@ -149,3 +149,5 @@ controller includes a built-in negative charge pump, an external negative voltag
 | **Enable Pulse Width** | $t_{PW}$ | 450 ns | Duration the Enable (EN) pin must remain HIGH |
 | **Enable Cycle Time** | $t_{CY}$ | 1 µs | Total time for one full Enable pulse cycle |
 
+
+![charLCD image on a breadboard](img/PIC16F1619charLCD_small.jpg)
