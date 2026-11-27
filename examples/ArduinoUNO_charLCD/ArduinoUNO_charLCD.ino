@@ -82,7 +82,7 @@ void lcd_set_data_bus_direction(lcd_bus_dir_t bus_dir) {
 
 void setup() {
   //configure output
-  for (uint8_t pin = 1; pin < PIN_COUNT_LCD; pin++) {
+  for (uint8_t pin = 2; pin < PIN_COUNT_LCD; pin++) {
     pinMode(pin, OUTPUT);
     digitalWrite(pin, LOW);  //clear pins
   }
