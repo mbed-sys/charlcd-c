@@ -1,3 +1,10 @@
+/**
+ * @brief LCD HAL Implementation & Application Example
+ * @details Defines the required and optional 'lcd.c' callback functions 
+ * for a microcontroller, including a sample implementation.
+ *
+ */
+
 #include "lcd.h"
 
 static enum {
